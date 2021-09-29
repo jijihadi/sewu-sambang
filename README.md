@@ -11,8 +11,8 @@
 
 Kurang dari program:
 
-- Kurang di konfirmasi pesanan
-- untuk admin mengkonfirmasi pemesanan, dan juga ada konfirmasi pembayaran kan karean ada transfer dan cash
+- Kurang di konfirmasi pesanan//
+- untuk admin mengkonfirmasi pemesanan, dan juga ada konfirmasi pembayaran kan karean ada transfer dan cash//
 - untuk data laporan pengunjung admin nantinya bisa mendownload menjadi pdf
 
 Tanggal 4 Finish-in bgsd!!!

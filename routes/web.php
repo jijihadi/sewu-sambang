@@ -21,9 +21,9 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/pemesanan_tiket', function () {
-    return view('pemesanan_tiket');
-});
+
+Route::get('/pemesanan_tiket', [HomeController::class, 'pemesanan_tiket']);
+
 Route::get('/home', function () {
     return view('home');
 });
@@ -52,6 +52,9 @@ Route::get('/admin/detail_pembelian/{kode}', [AdminController::class, 'detail_pe
 Route::get('/admin/hapus_pembelian/{kode}', [AdminController::class, 'hapus_pembelian']);
 
 Route::get('/admin/data_pemesanan', [AdminController::class, 'data_pemesanan']);
+Route::get('/admin/detail_pemesanan/{kode}', [AdminController::class, 'detail_pemesanan']);
+Route::get('/admin/bayar_tiket/{kode}', [AdminController::class, 'bayar_tiket']);
+Route::get('/admin/aduan_tiket/{kode}', [AdminController::class, 'aduan_tiket']);
 
 Route::get('/admin/data_fasilitas', [AdminController::class, 'data_fasilitas']);
 Route::get('/admin/edit_fasilitas/{id}', [AdminController::class, 'edit_fasilitas']);

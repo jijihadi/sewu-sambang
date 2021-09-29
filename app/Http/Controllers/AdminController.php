@@ -31,6 +31,21 @@ class AdminController extends Controller
         ];
         return view('admin/data_pemesanan', $data);
     }
+    
+    public function detail_pemesanan($kode)
+    {
+        $pemesanan = DB::table('pemesanans')
+            ->join('fasilitass', 'pemesanans.fasilitas_id', '=', 'fasilitass.id_fasilitas')
+            // ->join('pembayarans', 'pemesanans.kode_pembayaran', '=', 'pembayarans.kode_pembayaran')
+            ->join('users', 'pemesanans.user_id', '=', 'users.id')
+            ->join('tikets', 'pemesanans.tiket_id', '=', 'tikets.id_tiket')
+            ->where('pemesanans.id_pemesanan', $kode)
+            ->get();
+        $data = [
+            'pemesanan' => $pemesanan,
+        ];
+        return view('admin/detail_pemesanan', $data);
+    }
 
     public function data_pembelian()
     {
@@ -44,6 +59,26 @@ class AdminController extends Controller
             'pembelian' => $pembelian,
         ];
         return view('admin/data_pembelian', $data);
+    }
+    public function bayar_tiket($kode)
+    {
+        DB::table('pembayarans')
+        ->where('kode_pembayaran', $kode)
+        ->update([
+            'metode_pembayaran' => 1,
+            'bukti_pembayaran' => '',
+            'status_pembayaran' => 1,
+        ]);
+        return redirect('admin/data_pembelian');
+    }
+    public function aduan_tiket($kode)
+    {
+        DB::table('pembayarans')
+        ->where('kode_pembayaran', $kode)
+        ->update([
+            'status_pembayaran' => 0,
+        ]);
+        return redirect('admin/data_pembelian');
     }
     public function detail_pembelian($kode)
     {

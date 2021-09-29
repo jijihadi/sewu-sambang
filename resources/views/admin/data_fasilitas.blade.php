@@ -86,7 +86,7 @@ function tgl_indo($tanggal)
                                     </td>
                                     <td>
                                         <a href="/admin/edit_fasilitas/{{ $f->id_fasilitas }}" class="btn btn-success btn-sm"><i class="link-icon" data-feather="feather"></i></a>
-                                        <a href="/admin/hapus_fasilitas/{{ $f->id_fasilitas }}" class="btn btn-danger btn-sm"><i class="link-icon" data-feather="trash"></i></a>
+                                        <a href="/admin/hapus_fasilitas/{{ $f->id_fasilitas }}" onclick="confirm('Hapus data ini?')" class="btn btn-danger btn-sm"><i class="link-icon" data-feather="trash"></i></a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>

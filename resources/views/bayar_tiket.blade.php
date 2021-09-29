@@ -316,7 +316,7 @@
 		</div>
 
 		<!-- Add -->
-
+{{-- 
 		<div class="add">
 			<div class="container">
 				<div class="row">
@@ -380,7 +380,7 @@
 
 				</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<!-- Footer -->
 

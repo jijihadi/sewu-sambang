@@ -35,6 +35,18 @@ class HomeController extends Controller
     {
         return view('galeri');
     }
+    public function pemesanan_tiket()
+    {
+        $data = DB::table('pemesanans')
+        ->join('fasilitass', 'pemesanans.fasilitas_id', '=', 'fasilitass.id_fasilitas')
+        // ->join('pembayarans', 'pemesanans.kode_pembayaran', '=', 'pembayarans.kode_pembayaran')
+        ->join('users', 'pemesanans.user_id', '=', 'users.id')
+        ->join('tikets', 'pemesanans.tiket_id', '=', 'tikets.id_tiket')
+        ->where('user_id', Auth::user()->id)
+        ->get();
+        // dd($data);
+        return view('pemesanan_tiket', ['pemesanan'=>$data]);
+    }
     public function beli_wisata(Request $request)
     {
         $tiket = DB::table('tikets')
@@ -65,7 +77,7 @@ class HomeController extends Controller
         foreach ($id_pesan as $id) {
             $get = $id->id_pemesanan;
         }
-        return redirect('/detail_pemesanan' . '/' . $get . '');
+        return redirect('/pemesanan_tiket');
     }
     public function detail_pemesanan($id_pesanan)
     {
@@ -96,19 +108,27 @@ class HomeController extends Controller
     }
     public function proses_bayar(Request $request)
     {
-        $this->validate($request, [
-            'bukti_pembayaran' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-        $bukti_pembayaran = $request->file('bukti_pembayaran');
-        $bukti = explode('.', $bukti_pembayaran->getClientOriginalName());
-        $nama_bukti = "bukti_" . $request->nama_customer . "_" . time() . "." . end($bukti);
-        $tujuan_upload = 'bukti_pembayaran/';
-        $bukti_pembayaran->move($tujuan_upload, $nama_bukti);
+        if ($request->metode_pembayaran==2) {
+            $this->validate($request, [
+                'bukti_pembayaran' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+            $bukti_pembayaran = $request->file('bukti_pembayaran');
+            $bukti = explode('.', $bukti_pembayaran->getClientOriginalName());
+            $nama_bukti = "bukti_" . $request->nama_customer . "_" . time() . "." . end($bukti);
+            $tujuan_upload = 'bukti_pembayaran/';
+            $bukti_pembayaran->move($tujuan_upload, $nama_bukti);
+            $st = 1;
 
+        }else if ($request->metode_pembayaran==1) {
+            $nama_bukti = "";
+            $st = 0;
+        }
+
+        
         $get_kode = DB::table('pembayarans')
-            ->orderByDesc('pembayarans.kode_pembayaran')
-            ->limit(1)
-            ->get();
+        ->orderByDesc('pembayarans.kode_pembayaran')
+        ->limit(1)
+        ->get();
 
         if ($get_kode->count() > 0) {
             foreach ($get_kode as $kode) {
@@ -126,7 +146,7 @@ class HomeController extends Controller
             'tiket_id' => $request->tiket_id,
             'nama_customer' => $request->nama_customer,
             'metode_pembayaran' => $request->metode_pembayaran,
-            'status_pembayaran' => 1,
+            'status_pembayaran' => $st,
             'bukti_pembayaran' => $nama_bukti,
             'tanggal_pembayaran' => date('Y-m-d'),
         ]);
@@ -134,7 +154,7 @@ class HomeController extends Controller
             'status' => 1,
             'kode_pembayaran' => 'KD_' . $kd
         ]);
-        return redirect('/detail_pemesanan' . '/' . $request->pemesanan_id . '');
+        return redirect('/pemesanan_tiket');
     }
     public function cetak_tiket($id_tiket)
     {

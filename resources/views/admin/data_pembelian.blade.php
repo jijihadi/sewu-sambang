@@ -74,6 +74,7 @@ function tgl_indo($tanggal)
                                     <th scope="col"><b>Tiket</b></th>
                                     <th scope="col"><b>Fasilitas</b></th>
                                     <th scope="col"><b>Total Bayar</b></th>
+                                    <th scope="col"><b>Status</b></th>
                                     <th scope="col"><b>Aksi</b></th>
                                 </tr>
                             </thead>
@@ -88,9 +89,18 @@ function tgl_indo($tanggal)
                                     <td>{{ $p->nama_tiket }}</td>
                                     <td>{{ $p->nama_fasilitas }}</td>
                                     <td>Rp. {{ number_format($p->total_harga, 0, '.','.') }}</td>
+                                    @if($p->metode_pembayaran=='1' && $p->status_pembayaran!='1')
+                                        <td><p class="text-warning">Cash | Belum Bayar</p></td>
+                                    @elseif($p->metode_pembayaran=='1' && $p->status_pembayaran=='1')
+                                        <td><p class="text-success">Cash | Sudah Bayar</p></td>
+                                    @elseif($p->metode_pembayaran!='1' && $p->status_pembayaran!='1')
+                                        <td><p class="text-warning">Transfer | Belum Bayar</p></td>
+                                    @else
+                                        <td><p class="text-success">Transfer | Sudah Bayar</p></td>
+                                    @endif
                                     <td>
                                         <a href="/admin/detail_pembelian/{{ $p->kode_pembayaran }}" class="btn btn-success btn-sm"><i class="link-icon" data-feather="search"></i></a>
-                                        <a href="/admin/hapus_pembelian/{{ $p->kode_pembayaran }}" class="btn btn-danger btn-sm"><i class="link-icon" data-feather="trash"></i></a>
+                                        <a href="/admin/hapus_pembelian/{{ $p->kode_pembayaran }}" onclick="confirm('Hapus data ini?')" class="btn btn-danger btn-sm"><i class="link-icon" data-feather="trash"></i></a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>

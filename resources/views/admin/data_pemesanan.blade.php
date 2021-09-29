@@ -90,7 +90,7 @@ function tgl_indo($tanggal)
                                     <td>Rp. {{ number_format($p->total_harga, 0, '.','.') }}</td>
                                     <td>
                                         <a href="/admin/detail_pemesanan/{{ $p->id_pemesanan }}" class="btn btn-success btn-sm"><i class="link-icon" data-feather="search"></i></a>
-                                        <a href="/admin/hapus_pemesanan/{{ $p->id_pemesanan }}" class="btn btn-danger btn-sm"><i class="link-icon" data-feather="trash"></i></a>
+                                        <a href="/admin/hapus_pemesanan/{{ $p->id_pemesanan }}" onclick="confirm('Hapus data ini?')" class="btn btn-danger btn-sm"><i class="link-icon" data-feather="trash"></i></a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>

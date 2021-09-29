@@ -69,6 +69,13 @@
                             <i class="link-arrow" data-feather="chevron-right"></i>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/admin/data_galeri" class="nav-link">
+                            <i class="link-icon" data-feather="image"></i>
+                            <span class="link-title">Data Galeri</span>
+                            <i class="link-arrow" data-feather="chevron-right"></i>
+                        </a>
+                    </li>
                     <li class="nav-item nav-category">Users</li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/data_customer">

@@ -28,7 +28,7 @@ function tgl_indo($tanggal)
 } ?>
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
     <div>
-        <h4 class="mb-3 mb-md-0">Data Penjualan Tiket</h4>
+        <h4 class="mb-3 mb-md-0">Data Pemesanan Tiket</h4>
     </div>
     <!-- <div class="d-flex align-items-center flex-wrap text-nowrap">
     <div class="input-group date datepicker dashboard-date mr-2 mb-2 mb-md-0 d-md-none d-xl-flex" id="dashboardDate">
@@ -55,7 +55,7 @@ function tgl_indo($tanggal)
         <div class="card overflow-hidden">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-baseline mb-4 mb-md-3">
-                    <h6 class="card-title mb-0">Tabel Data Penjualan Tiket</h6>
+                    <h6 class="card-title mb-0">Tabel Data Pemesanan Tiket</h6>
                     <div class="dropdown">
                         <button class="btn p-0" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -64,7 +64,7 @@ function tgl_indo($tanggal)
                 </div>
                 <div class="row justify-content-center align-items-start mb-2">
                     <div class="col-md-11">
-                        @foreach($pembelian as $p)
+                        @foreach($pemesanan as $p)
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
@@ -109,7 +109,7 @@ function tgl_indo($tanggal)
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                @foreach($pembelian as $p)
+                                @foreach($pemesanan as $p)
                                 <tr class="text-center">
                                     <th scope="row">{{ $i }}</th>
                                     <!-- <td><b>{{ $p->kode_pembayaran }}</b></td> -->
@@ -125,28 +125,12 @@ function tgl_indo($tanggal)
                                 @endforeach
                             </tbody>
                         </table>
-                        @foreach($pembelian as $p)
+                        @foreach($pemesanan as $p)
                         <div class="row justify-content-center my-4">
                             <div class="col-md-12">
                                 <table class="table table-bordered table-hover mt-2">
                                     <tr>
-                                        <th>Pembayaran</th>
-                                        <td>
-                                            @if ($p->metode_pembayaran=="2" && $p->status_pembayaran=="1")
-                                                <img style="max-height: 500px" src="{{ url('/') }}/bukti_pembayaran/{{ $p->bukti_pembayaran }}" alt="">
-                                                <hr>
-                                                <a href="/admin/aduan_tiket/{{ $p->kode_pembayaran }}" onclick="confirm('{{ $p->nama_customer }} mengajukan bukti transfer yang tidak sesuai?" class="btn btn-primary btn-icon-text mb-1 mb-md-0">Adukan Kesahalan Bayar! <i class="link-icon" data-feather="alert-triangle"></i></a>
-                                                </div></b>
-                                            @elseif ($p->metode_pembayaran!="2" && $p->status_pembayaran!="1")
-                                                <b><div class="text-warning">Pembayaran cash <a href="/admin/bayar_tiket/{{ $p->kode_pembayaran }}" onclick="confirm('{{ $p->nama_customer }} sudah membayar sejumlah Rp. {{ number_format($p->total_harga, 0, '.','.') }} ?')" class="btn btn-primary btn-icon-text mb-1 mb-md-0">Bayar sekarang <i class="link-icon" data-feather="check-circle"></i></a>
-                                                </div></b>
-                                            @elseif ($p->metode_pembayaran!="1" && $p->status_pembayaran!="1")
-                                                <b><div class="text-warning">Pembayaran cash <a href="/admin/bayar_tiket/{{ $p->kode_pembayaran }}" onclick="confirm('{{ $p->nama_customer }} sudah membayar sejumlah Rp. {{ number_format($p->total_harga, 0, '.','.') }} ?')" class="btn btn-primary btn-icon-text mb-1 mb-md-0">Bayar sekarang <i class="link-icon" data-feather="check-circle"></i></a>
-                                                </div></b>
-                                            @else
-                                                <div class="text-success">Sudah Dibayarkan</div>
-                                            @endif
-                                        </td>
+                                        <th>Pembayaran</th><td><b>{!!($p->kode_pembayaran==null)? '<div class="text-danger">Belum Dibayarkan</div>': '<div class="text-success">Sudah Dibayar</div>'!!}</b></td>
                                     </tr>
                                 </table>
                             </div>
