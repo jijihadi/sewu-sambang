@@ -28,7 +28,7 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <a href="/admin/index" class="sidebar-brand">
+                <a href="/admin/dashboard" class="sidebar-brand">
                     Pesan<span>Tiket</span>
                 </a>
                 <div class="sidebar-toggler not-active">
@@ -41,7 +41,7 @@
                 <ul class="nav">
                     <li class="nav-item nav-category">Main</li>
                     <li class="nav-item">
-                        <a href="/admin/index" class="nav-link">
+                        <a href="/admin/dashboard" class="nav-link">
                             <i class="link-icon" data-feather="box"></i>
                             <span class="link-title">Dashboard</span>
                             <i class="link-arrow" data-feather="chevron-right"></i>
