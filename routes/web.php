@@ -65,3 +65,6 @@ Route::get('/admin/data_customer', [AdminController::class, 'data_customer']);
 Route::get('/admin/hapus_customer/{id}', [AdminController::class, 'hapus_customer']);
 Route::get('/admin/data_admin', [AdminController::class, 'data_admin']);
 Route::get('/admin/hapus_admin/{id}', [AdminController::class, 'hapus_admin']);
+
+Route::get('/admin/laporan', [AdminController::class, 'laporan']);
+Route::get('/admin/cetak_laporan', [AdminController::class, 'cetak_laporan']);

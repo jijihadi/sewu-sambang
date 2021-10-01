@@ -91,7 +91,14 @@
                             <i class="link-arrow" data-feather="chevron-right"></i>
                         </a>
                     </li>
-
+                    <li class="nav-item nav-category">Laporan</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/laporan">
+                            <i class="link-icon" data-feather="feather"></i>
+                            <span class="link-title">Laporan Penyewaan</span>
+                            <i class="link-arrow" data-feather="chevron-right"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

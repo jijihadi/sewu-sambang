@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use \PDF;
 
 class AdminController extends Controller
 {
@@ -182,6 +183,34 @@ class AdminController extends Controller
         return redirect('/admin/data_admin');
     }
 
+    public function laporan()
+    {
+        $pemesanan = DB::table('pemesanans')
+            ->join('fasilitass', 'pemesanans.fasilitas_id', '=', 'fasilitass.id_fasilitas')
+            ->join('pembayarans', 'pemesanans.kode_pembayaran', '=', 'pembayarans.kode_pembayaran')
+            ->join('users', 'pemesanans.user_id', '=', 'users.id')
+            ->join('tikets', 'pemesanans.tiket_id', '=', 'tikets.id_tiket')
+            ->where('pembayarans.status_pembayaran', 1)
+            ->get();
+        $data = [
+            'pemesanan' => $pemesanan,
+        ];
+        return view('admin/laporan', $data);
+    }
+
+    public function cetak_laporan()
+    {
+        $pemesanan = DB::table('pemesanans')
+            ->join('fasilitass', 'pemesanans.fasilitas_id', '=', 'fasilitass.id_fasilitas')
+            ->join('pembayarans', 'pemesanans.kode_pembayaran', '=', 'pembayarans.kode_pembayaran')
+            ->join('users', 'pemesanans.user_id', '=', 'users.id')
+            ->join('tikets', 'pemesanans.tiket_id', '=', 'tikets.id_tiket')
+            ->where('pembayarans.status_pembayaran', 1)
+            ->get();
+
+            $pdf = PDF::loadView('admin.cetak',['pemesanan' => $pemesanan]);
+            return $pdf->stream('Data Penyewaan per'.date('Ymd').'.pdf', array('Attachment'=>0));
+    }
     /**
      * Show the form for creating a new resource.
      *
