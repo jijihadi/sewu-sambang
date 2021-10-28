@@ -3,7 +3,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
   <div>
-    <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
+    <h4 class="mb-3 mb-md-0">Selamat Datang {{ Auth::user()->name }}</strong>, Semangat kerjanya</h4>
   </div>
   <!-- <div class="d-flex align-items-center flex-wrap text-nowrap">
     <div class="input-group date datepicker dashboard-date mr-2 mb-2 mb-md-0 d-md-none d-xl-flex" id="dashboardDate">
@@ -25,7 +25,7 @@
   </div> -->
 </div>
 
-<div class="row">
+{{-- <div class="row">
   <div class="col-12 col-xl-12 stretch-card">
     <div class="row flex-grow">
       <div class="col-md-4 grid-margin stretch-card">
@@ -102,14 +102,14 @@
       </div>
     </div>
   </div>
-</div> <!-- row -->
+</div> <!-- row --> --}}
 
 <div class="row">
   <div class="col-12 col-xl-12 grid-margin stretch-card">
     <div class="card overflow-hidden">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-4 mb-md-3">
-          <h6 class="card-title mb-0">Grafik Penjualan Tiket</h6>
+          <h6 class="card-title mb-0">Jangan Lupa untuk cek Data Pembelian dan Pemesanan Tiket hari ini ya</h6>
           <div class="dropdown">
             <button class="btn p-0" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -118,7 +118,7 @@
         </div>
         <div class="row align-items-start mb-2">
           <div class="col-md-7">
-            <p class="text-muted tx-13 mb-3 mb-md-0">Grafik hasil penjualan tiket sewu sambang dalam setahun</p>
+            <p class="text-muted tx-13 mb-3 mb-md-0">Jangan lupa sholat kalau sudah adzan, dan makan kalau lapar, fighting!!</p>
           </div>
         </div>
         <div class="flot-wrapper">

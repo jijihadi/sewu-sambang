@@ -66,7 +66,7 @@ function tgl_indo($tanggal)
                 </div>
                 <div class="row justify-content-center align-items-start mb-2">
                     <div class="col-md-11">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover" id="myTable">
                             <thead>
                                 <tr class="text-center">
                                     <th scope="col"><b>No</b></th>

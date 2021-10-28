@@ -9,7 +9,6 @@
 
 ## About Laravel
 
-Kurang dari program:
 
 - Kurang di konfirmasi pesanan//
 - untuk admin mengkonfirmasi pemesanan, dan juga ada konfirmasi pembayaran kan karean ada transfer dan cash//
